@@ -1,5 +1,6 @@
 // #define LowPowerTimerModule
 #define PRJ_Autonomous_Gate
+// #define PRJ_Template
 // # define Prj_Server
 // #define DispenserModule
 ////////////////////////////////////////////////////////////////////////////////////
@@ -25,5 +26,11 @@ void loop(){ Server_loop();}
 #include <PRJ_Autonomous_Gate.h>    
 void setup() {PRJ_Autonomous_Gate_SetUp(); }
 void loop(){ PRJ_Autonomous_Gate_Loop();}
+#endif
+/////////////////////////////////////////////////////////////////////////////////
+#ifdef PRJ_Template
+    #include <PRJ_Template.h>    
+    void setup() {PRJ_Template_SetUp(); }
+    void loop(){ PRJ_Template_Loop();}
 #endif
 /////////////////////////////////////////////////////////////////////////////////
