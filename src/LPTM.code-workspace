@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../CODE"
+		},
+		{
+			"name": "LPTM",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"stm32-for-vscode.openOCDPath": "C:\\Users\\Dr.Sudip Chakraborty\\AppData\\Local\\Microsoft\\WinGet\\Packages\\xpack-dev-tools.openocd-xpack_Microsoft.Winget.Source_8wekyb3d8bbwe\\xpack-openocd-0.12.0-7\\bin\\openocd.EXE",
+		"stm32-for-vscode.makePath": false,
+		"stm32-for-vscode.armToolchainPath": "C:\\Program Files (x86)\\Arm\\GNU Toolchain mingw-w64-i686-arm-none-eabi\\bin"
+	}
+}
