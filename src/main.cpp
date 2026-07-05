@@ -23,9 +23,10 @@ void loop(){ Server_loop();}
 #endif
 ////////////////////////////////////////////////////////////////////////////////////
 #ifdef PRJ_Autonomous_Gate
-#include <PRJ_Autonomous_Gate.h>    
-void setup() {PRJ_Autonomous_Gate_SetUp(); }
-void loop(){ PRJ_Autonomous_Gate_Loop();}
+#include <PRJ_Autonomous_Gate.h>  
+    Autonomous_Gate gate;  
+    void setup() {gate.PRJ_Autonomous_Gate_SetUp(); }
+    void loop(){ gate.PRJ_Autonomous_Gate_Loop();}
 #endif
 /////////////////////////////////////////////////////////////////////////////////
 #ifdef PRJ_Template
