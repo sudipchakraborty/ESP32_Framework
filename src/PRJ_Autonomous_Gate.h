@@ -8,10 +8,11 @@
 #define PIN_SEN_TERMINAL    35
 #define PIN_ST_LED          2
 #define PIN_CALLING_BELL    14
+
+#define PIN_EN              33
 #define PIN_L_PWM           27
-#define PIN_L_EN            20
-#define PIN_R_PWM           25
-#define PIN_R_EN            33    
+#define PIN_R_PWM           25 
+
 #define PIN_SW_OUTDOOR      32
 #define PIN_SW_INDOOR       23
 #define PIN_LED_FAULT       19

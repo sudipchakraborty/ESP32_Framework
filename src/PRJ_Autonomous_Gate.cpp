@@ -25,11 +25,13 @@
 /// default declaration ///////////
 extern StatusBlink st;
 extern Autonomous_Gate gate;  
+extern debug dbg;
 ///////////////////////////////////
 
 
 ////specific object ///////////////
-PWM Motor(19,1000,10);          // 1kHz, 10-bit
+PWM Lpwm(PIN_L_PWM,25000,10);          // 1kHz, 10-bit
+PWM Rpwm(PIN_R_PWM,25000,10);          // 1kHz, 10-bit
 ///////////////////////////////////
 
 // assign for input 
@@ -39,35 +41,73 @@ IO outdoor(PIN_SW_OUTDOOR,IO_INPUT,ACTIVE_LOW);
 IO indoor(PIN_SW_INDOOR,IO_INPUT,ACTIVE_LOW);
 
 // input assignment
+IO en(PIN_EN,IO_OUTPUT,ACTIVE_HIGH);
+
 IO calling_Bell(PIN_CALLING_BELL,IO_OUTPUT,ACTIVE_LOW);
-IO Lpwm(PIN_L_PWM,IO_OUTPUT,ACTIVE_LOW);
-IO Len(PIN_L_EN,IO_OUTPUT,ACTIVE_LOW);
-IO Rpwm(PIN_R_PWM,IO_OUTPUT,ACTIVE_LOW);
-IO Ren(PIN_R_EN,IO_OUTPUT,ACTIVE_LOW);
+
+
+// PWM Lpwm(PIN_L_PWM,25,ACTIVE_LOW);
+// IO Rpwm(PIN_R_PWM,IO_OUTPUT,ACTIVE_LOW);
+
 IO fault(PIN_LED_FAULT,IO_OUTPUT,ACTIVE_LOW);
 IO dir(PIN_RE_DE,IO_OUTPUT,ACTIVE_LOW);
-IO bzr(PIN_BZR,IO_OUTPUT,ACTIVE_LOW);
+IO bzr_gt(PIN_BZR,IO_OUTPUT,ACTIVE_LOW);
 ////////////////////////////////
 
 
 //__________________________________________________________________________________________________________________________
 void Autonomous_Gate::PRJ_Autonomous_Gate_SetUp()
 {
+    // Default setup///////////////
     st.begin(PIN_ST_LED, 50000);
-    calling_Bell.begin();
-    Lpwm.begin(); 
-    Len.begin(); 
-    Rpwm.begin(); 
-    Ren.begin(); 
-    fault.begin(); 
-    dir.begin(); 
-    bzr.begin();
+    dbg.begin(Serial1, 115200, 4);
+    dbg.println("system started..");
+    /////////////////////////////////
+
+    en.begin(); 
+    en.on();
+
+    Lpwm.begin();
+    Lpwm.setDuty(30);
+
+    Rpwm.begin();
+    Rpwm.setDuty(30);
+
+    Lpwm.disable();
+    Rpwm.disable();
+
+    // calling_Bell.begin();
+    // Lpwm.begin(); 
+
+    // Rpwm.begin(); 
+    // Ren.begin(); 
+    // fault.begin(); 
+    // dir.begin(); 
+    // bzr_gt.begin();
 }
 //_________________________________________________________________________________________________________
 void Autonomous_Gate::PRJ_Autonomous_Gate_Loop()
 {
     st.blink();
-    FSM_Handler();
+
+    Lpwm.enable();
+    Rpwm.disable();
+    delay(5000);
+    
+    Lpwm.disable();
+    delay(5000);
+
+    Rpwm.enable();
+    delay(5000);
+    Rpwm.disable();
+    delay(5000);
+
+
+    // FSM_Handler();
+    // Lpwm.test();
+
+    // en.test();
+    // Lpwm.test();
 }
 //_________________________________________________________________________________________________________
 void Autonomous_Gate::FSM_Handler()
